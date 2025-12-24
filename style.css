@@ -367,7 +367,7 @@ h2, h2::before{
       rgba(111,78,55,0.25) 90%,
       rgba(111,78,55,0.40) 100%
     ),
-    url('images/try10.png') center center no-repeat;
+    url('try10.png') center center no-repeat;
   background-size: cover;
 
   z-index: 0;
