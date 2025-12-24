@@ -214,7 +214,7 @@ h2, h2::before{
 
 /* Hero */
 .hero {
-  background: url('images/try9.jpg') center/cover no-repeat;
+  background: url('try9.jpg') center/cover no-repeat;
   color: white;
   padding: 100px 30px;
 }
@@ -573,7 +573,7 @@ h2, h2::before{
   background-color: #B0B1AA;
 
   /* Your bottom image */
-  background: url('images/try7.png') center 15% / cover no-repeat;
+  background: url('try7.png') center 15% / cover no-repeat;
 
 
 
