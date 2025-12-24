@@ -1,0 +1,832 @@
+:root{
+  --beige: #fcf6ec;
+  --cream: #fffdf9;
+  --green-dark: #2f3e2f;
+  --gold: #bfa14a;
+  --muted: #cfc8b2;
+
+  /* NEW */
+  --bg-main: #B0B1AA;
+  --bg-edge: rgba(255,255,255,0.92);
+  --bg-edge2: rgba(255,255,255,0.60);
+}
+
+* { box-sizing: border-box; }
+html, body{
+  height: 100%;
+  margin: 0;
+  font-family: "Playfair Display", serif;
+
+  /* Base fill so there is NEVER a hard transition */
+  background-color: #B0B1AA;
+
+  /* Long, smooth edge fade (no hard breakpoints) */
+  background-image: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.16) 0%,
+    rgba(255,255,255,0.10) 3%,
+    rgba(255,255,255,0.06) 6%,
+    rgba(176,177,170,0.92) 14%,
+    rgba(176,177,170,0.98) 24%,
+    #B0B1AA 50%,
+    rgba(176,177,170,0.98) 76%,
+    rgba(176,177,170,0.92) 86%,
+    rgba(255,255,255,0.06) 94%,
+    rgba(255,255,255,0.10) 97%,
+    rgba(255,255,255,0.16) 100%
+  );
+
+  background-attachment: fixed;
+  color: #333;
+  text-align: center;
+}
+
+
+p{
+  /* height: 100%;  <-- DELETE THIS */
+  height: auto;
+  margin: 8px 0;
+  font-family: "Libre Baskerville", serif;
+  font-size: 15px;
+  text-align: center;
+  color: #1C2316;
+}
+
+
+/* Links */
+a { 
+	color: var(--green-dark); 
+	text-decoration: underline;
+	font-family: "Libre Baskerville", serif;
+	
+}
+
+h1{
+	color: #1C2316;
+}
+.crest{
+  color:white;
+}
+
+h3{
+  font-size: 25px;
+}
+
+
+.couple{
+  font-size:30px;
+  margin:2px 0;          /* 👈 tighter vertical spacing */
+  color:#1C2316;
+  letter-spacing:0.6px;
+}
+
+
+.date p
+{color:white;
+margin-bottom:8px
+}
+
+/* ===========================
+   NEW: Seamless “shining” H2
+   =========================== */
+/* ---------------------------
+   FIX 1: Keep images stacked (not beside titles)
+   --------------------------- */
+section img{
+  display: block;
+  margin: 12px auto;
+}
+
+/* ---------------------------
+   FIX 2: RESET countdown h2 completely
+   --------------------------- */
+#countdown .time-box h2{
+  position: static;
+  display: block;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  text-shadow: none;
+  color: white;
+}
+
+#countdown .time-box h2::before{
+  content: none !important;
+  color: white;
+}
+
+/* ---------------------------
+   FIX 3: Apply shine ONLY to real section titles
+   --------------------------- */
+section > h2,
+.card h2{
+  position: relative;
+  display: block;
+  width: fit-content;
+  margin: 18px auto 10px;
+  padding: 10px 26px;
+  border-radius: 999px;
+  z-index: 0;
+  color: #1C2316;
+
+  background: rgba(255,255,255,0.02);
+  text-shadow: 0 1px 10px rgba(255,255,255,0.25);
+
+  outline: none;
+  border: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+section > h2::before,
+.card h2::before{
+  content: "";
+  position: absolute;
+  inset: -12px -26px;        /* tighter halo */
+  border-radius: 999px;
+  z-index: -1;
+
+  background:
+    radial-gradient(ellipse at 50% 50%,
+      rgba(255,255,255,0.35) 0%,
+      rgba(255,255,255,0.18) 32%,
+      rgba(255,255,255,0.08) 55%,
+      rgba(176,177,170,0.00) 75%
+    );
+
+  filter: blur(5px);         /* softer edge */
+  opacity: 0.42;             /* 🔑 much subtler */
+  pointer-events: none;
+}
+
+
+
+/* extra safety: remove “thin line” on some browsers */
+h2, h2::before{
+  outline: none;
+  border: none;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* ===========================
+   Buttons
+   =========================== */
+.button {
+  background: rgba(255, 255, 255, 0.6);
+  font-family: "Libre Baskerville", serif;
+  color: #d4af37;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+  transition: background 0.3s ease;
+}
+.button:hover { background: rgba(255, 255, 255, 0.8); }
+
+/* Gifts button */
+.gift-btn{
+  display: inline-block;
+  padding: 12px 22px;
+  border: 2px; /* solid /*var(--green-dark);*/ 
+  border-radius: 10px;
+  text-decoration: none;
+  color: /*var(--green-dark);*/ #898A84;
+  background: /* rgba(255,255,255,0.7);*/ #1C2316;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.gift-btn:hover{
+  background: /*rgba(255,255,255,0.9);*/ #898A84;
+  transform: translateY(-1px);
+  color: #1C2316;
+  border: 2px; /*solid /*var(--green-dark);// #898A84;*/
+  
+}
+
+/* Hero */
+.hero {
+  background: url('images/try9.jpg') center/cover no-repeat;
+  color: white;
+  padding: 100px 30px;
+}
+.hero h1 { font-size: 3rem; }
+
+/* Script Font */
+.script {
+  font-family: 'Great Vibes', cursive;
+  margin-top: 0px;
+  font-size: 2.5rem;
+  color: white;
+}
+
+/* Countdown */
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+  color: white;
+}
+.time-box {
+  background: rgba(255,255,255,0.1);
+  border: 2px solid white;
+  padding: 15px;
+  width: 80px;
+  margin-top: 10px;
+  color: white;
+}
+.small{
+	font-size: 11px;
+}
+.time-box h2 { color: white ; font-size: 2rem; margin: 0; }
+.time-box p { color: white; margin: 0; font-size: 0.8rem; letter-spacing: 1px; }
+
+/* Itinerary Arch */
+.itinerary {
+  text-align: center;
+  background-color: #1C2316; /*rgba(31, 77, 58, 0.5);*/
+  color: #898A84; 
+  border-radius: 250px 250px 0 0;
+  padding: 100px 20px;
+  margin-top: 30px;
+}
+
+/* ===========================
+   Dress Code fixes
+   =========================== */
+.dresscode {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  /* NEW: keep cubes 10px away from screen edges */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* NEW: force the dresscode note to always sit UNDER the cubes */
+.dresscode .small{
+  flex-basis: 100%;
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+  color: #1C2316;
+}
+
+.parents-title{
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  margin: 12px 0;
+  color: #1C2316;
+}
+
+.cube {
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+}
+
+.card{
+  background:var(--card);padding:22px;border-radius:14px;
+  box-shadow: 0 8px 22px rgba(20,20,20,0.05);border:1px solid rgba(200,169,75,0.06);color: 
+  color: #1C2316;
+}
+
+/* background image */
+/* make sure frames is the positioning context */
+.frames {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center; /* centers .content vertically if you want */
+  align-items: center;
+  text-align: center;
+
+  /* CHANGED: no pure white behind the hero */
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.30) 0%,
+      rgba(255,255,255,0.18) 4%,
+      rgba(176,177,170,0.92) 12%,
+      rgba(176,177,170,0.98) 22%,
+      #B0B1AA 50%,
+      rgba(176,177,170,0.98) 78%,
+      rgba(176,177,170,0.92) 88%,
+      rgba(255,255,255,0.18) 96%,
+      rgba(255,255,255,0.30) 100%
+    );
+    /*
+    -webkit-mask-image: linear-gradient(
+  		to bottom,
+  		rgba(0,0,0,1) 0%,
+  		rgba(0,0,0,1) 100%,  
+  		rgba(0,0,0,0.85) 92%,
+  		rgba(0,0,0,0.55) 95%,
+  		rgba(0,0,0,0.25) 98%,
+  		rgba(0,0,0,0) 100%
+	);
+	mask-image: linear-gradient(
+  		to bottom,
+  		rgba(0,0,0,1) 0%,
+  		rgba(0,0,0,1) 88%,
+  		rgba(0,0,0,0.85) 92%,
+  		rgba(0,0,0,0.55) 95%,
+  		rgba(0,0,0,0.25) 98%,
+  		rgba(0,0,0,0) 100%
+	);
+	*/
+}
+
+
+.frames::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  /* UPDATED overlay: NO white wash at top; only adds warmth near the bottom */
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,0) 0%,     /* TOP is solid/clean */
+      rgba(255,255,255,0) 55%,
+      rgba(111,78,55,0.10) 78%,
+      rgba(111,78,55,0.25) 90%,
+      rgba(111,78,55,0.40) 100%
+    ),
+    url('images/try10.png') center center no-repeat;
+  background-size: cover;
+
+  z-index: 0;
+
+  filter: grayscale(100%);
+  animation: colorFade 5s ease-in-out forwards;
+
+  /* MASK: keep top 92% totally solid, fade only at the very bottom */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 92%,
+    rgba(0,0,0,0.80) 95%,
+    rgba(0,0,0,0.45) 97%,
+    rgba(0,0,0,0.15) 99%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 92%,
+    rgba(0,0,0,0.80) 95%,
+    rgba(0,0,0,0.45) 97%,
+    rgba(0,0,0,0.15) 99%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+
+/* content above the image */
+.frames .content {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.frames .date {
+  position: absolute;
+  bottom: 20px;   /* adjust distance from bottom edge */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: white;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4); /* makes it pop slightly */
+}
+/* countdown pinned to the very top of the hero */
+#countdown {
+  position: absolute;  
+  top: 90px;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  z-index: 2;          
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+
+
+
+#crest{
+  position: absolute;   /* relative to .frames */
+  top: 60px;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  z-index: 2;           /* above .content and the fade */
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+/* Itinerary layout: centered block, justified text, vertical divider */
+/* Itinerary layout: truly centered block */
+.itinerary-list{
+  text-align: center;
+  color: #898A84; 
+  max-width: 420px;     /* controls visual center */
+  margin: 0 auto;       /* true centering */
+  display: grid;
+  gap: 14px;
+}
+
+
+.it-row{
+  text-align: center;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+}
+
+
+.it-time{
+  text-align: right;
+  padding-right: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.it-event{
+  padding-left: 16px;
+  border-left: 2px solid rgba(47,62,47,0.35);
+  text-align: justify;
+  text-justify: inter-word;
+  min-width: 220px; /* keeps the event column consistent */
+}
+
+
+
+/* Mobile: let it breathe */
+@media (max-width: 520px){
+  .it-row{ grid-template-columns: 110px 1fr; }
+  .it-event{ min-width: 0; }
+}
+
+.frame{
+	max-width:var(--max);
+	margin:20px auto;
+	padding:10px;
+	
+	}
+
+/* Confirmation */
+.confirmation select, .confirmation button {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1rem;
+}
+.footer-card{text-align:center;color:#6b6b6b;font-size:14px}
+
+/* hidden helper */
+.hidden{display:none}
+
+/* Big slider section replacing try6 image */
+.hero-slider{
+  width: min(980px, 96vw);
+  margin: 14px auto 10px;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.25);
+}
+
+.hero-track{
+  display: flex;
+  gap: 14px;
+  padding: 12px;
+  width: max-content;
+  animation: heroLoop 28s linear infinite;
+}
+
+.hero-track img{
+  height: 320px;     /* “section” feel */
+  width: auto;
+  border-radius: 14px;
+  display: block;
+  object-fit: cover;
+  filter: grayscale(20%); /* optional soft look */
+}
+
+/* Mobile */
+@media (max-width: 520px){
+  .hero-track img{ height: 220px; }
+  .hero-track{ animation-duration: 34s; }
+}
+
+/* Seamless loop because we duplicated the set */
+@keyframes heroLoop{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* responsive */
+@media(min-width:900px){
+  .container{grid-template-columns: 1fr 1fr;align-items:start}
+  .story{grid-column:1 / 3}
+  .rsvp{min-height:320px}
+}
+.fade-image {
+  width: 100%;
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.7;                       /* start slightly soft */
+  animation: colorFadeImg 6s ease-in-out forwards;
+}
+
+/* ===========================
+   Closing image (seamless)
+   =========================== */
+/* ===========================
+   Closing image (NO mask = NO seam)
+   =========================== */
+.closing-image{
+  position: relative;
+  width: 100%;
+  height: 95vh;
+  min-height: 680px;
+
+  /* Solid page tone behind everything */
+  background-color: #B0B1AA;
+
+  /* Your bottom image */
+  background: url('images/try7.png') center 15% / cover no-repeat;
+
+
+
+  /* Hard seam killers */
+  display: block;
+  line-height: 0;
+  margin-top: -6px;            /* overlap the previous section more */
+}
+
+/* This is the TOP blend (overlay), not a mask */
+.closing-image::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index: 1;
+
+  /* Fade FROM the green into the image (top only) */
+  background: linear-gradient(
+    to bottom,
+    rgba(176,177,170,1) 0%,
+    rgba(176,177,170,0.95) 4%,
+    rgba(176,177,170,0.70) 10%,
+    rgba(176,177,170,0.35) 18%,
+    rgba(176,177,170,0.12) 26%,
+    rgba(176,177,170,0.00) 34%
+  );
+
+  /* tiny blur removes any band/edge */
+  filter: blur(0.6px);
+  transform: translateY(-1px); /* overlap upward by 1px */
+}
+
+/* Absolute seam “cap” (covers 1px gaps on any browser) */
+.closing-image::after{
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  top:-10px;
+  height: 14px;
+  background: #B0B1AA;
+  z-index: 2;
+}
+
+/* ===========================
+   "Thank you" footer bar (SOLID)
+   =========================== */
+.closing-text{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 16px 12px 18px;
+  background: #B0B1AA;         /* solid green tone */
+
+  text-align: center;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(34px, 4.8vw, 58px);
+  color: white;
+
+  text-shadow:
+    0 6px 18px rgba(0,0,0,0.40),
+    0 0 18px rgba(255,255,255,0.12);
+
+  z-index: 3;
+}
+
+
+section{ margin-bottom: 0; }
+
+
+@keyframes colorFade {
+  from {
+    filter: grayscale(100%);
+  }
+  to {
+    filter: grayscale(0%);
+  }
+}
+
+@keyframes colorFadeImg {
+  0% {
+    filter: grayscale(100%);
+    opacity: 0.7;
+  }
+  50% {
+    filter: grayscale(40%);
+    opacity: 0.85;
+  }
+  100% {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+}
+/* ===== Itinerary: center the DIVIDER on the page ===== */
+.itinerary-list{
+  width: min(700px, 92vw) !important;  /* allow room on big screens */
+  margin: 0 auto !important;
+  display: grid !important;
+  gap: 14px !important;
+}
+
+/* Make columns equal so the divider is centered */
+.it-row{
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;  /* ✅ key change */
+  align-items: center !important;
+}
+
+/* Time hugs the center line */
+.it-time{
+  justify-self: end !important;
+  text-align: right !important;
+  padding-right: 18px !important;
+  white-space: nowrap !important;
+}
+
+/* Event hugs the center line and shows the divider */
+.it-event{
+  justify-self: start !important;
+  text-align: left !important;     /* aligns to the divider */
+  padding-left: 18px !important;
+
+  border-left: 2px solid rgba(47,62,47,0.35) !important;
+
+  min-width: 0 !important;         /* prevents drift */
+}
+
+/* Move itinerary title closer to the top */
+.itinerary{
+  padding-top: 50px !important;   /* was effectively 100px */
+}
+
+h2{
+  color: #1C2316 !important;
+}
+
+
+/* Force countdown numbers to stay white */
+#countdown .time-box h2{
+  color: #ffffff !important;
+}
+
+/* Global vertical rhythm between sections */
+section{
+  padding: 30px 20px;   /* vertical spacing inside sections */
+}
+
+/* Space between hero image and first text section */
+header{
+  margin-bottom: 60px;
+}
+
+/* ===========================
+   Hotels responsive layout
+   =========================== */
+/* ===========================
+   Hotels: enclosed cards + responsive grid
+   =========================== */
+.hotels-grid{
+  width: min(1100px, 92vw);
+  margin: 20px auto 0;
+  display: grid;
+  grid-template-columns: 1fr;     /* small screen = vertical */
+  gap: 18px;
+}
+
+.hotel-card{
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(28,35,22,0.20);
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+}
+
+.hotel-name{
+  margin: 8px 0 14px;
+  font-size: 20px;
+  color: #1C2316;
+  text-align: center;
+}
+
+.hotel-line{
+  text-align: center;
+}
+
+.hotel-links{
+  margin-top: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Link buttons inside each hotel card */
+.hotel-btn{
+  display: inline-block;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(28,35,22,0.35);
+  background: rgba(255,255,255,0.22);
+  text-decoration: none;
+  color: #1C2316;
+  font-family: "Libre Baskerville", serif;
+  font-size: 13px;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+.hotel-btn:hover{
+  background: rgba(255,255,255,0.35);
+  transform: translateY(-1px);
+}
+
+/* Large screen = side by side */
+@media (min-width: 900px){
+  .hotels-grid{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+/*
+ 
+  .hotel-name,
+  .hotel-line,
+  .hotel-links{
+    text-align: left;
+  }
+*/
+}
+
+.hotel-notes{
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(28,35,22,0.85);
+  font-family: "Libre Baskerville", serif;
+}
+
+@media (min-width: 900px){
+  .hotel-links{
+    justify-content: flex-start; /* align buttons with left text on desktop */
+  }
+}
+
+.hotel-card{
+  text-align: center;
+}
+
+.hotel-links{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
