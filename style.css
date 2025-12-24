@@ -830,3 +830,25 @@ header{
   flex-wrap: wrap;
 }
 
+/* ===========================
+   Dresscode cubes: 3 x 2 on phones
+   =========================== */
+@media (max-width: 520px){
+  .dresscode{
+    display: grid;
+    grid-template-columns: repeat(3, 60px); /* 3 cubes per row */
+    justify-content: center;
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* keep the note under the grid */
+  .dresscode .small{
+    grid-column: 1 / -1;   /* spans all 3 columns */
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
+
