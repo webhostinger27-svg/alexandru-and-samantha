@@ -12,10 +12,10 @@ function updateCountdown(){
   const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
   countdown.innerHTML = `
-    <div class="time-box"><h2>${days}</h2><p>Días</p></div>
-    <div class="time-box"><h2>${hours}</h2><p>Horas</p></div>
+    <div class="time-box"><h2>${days}</h2><p>Days</p></div>
+    <div class="time-box"><h2>${hours}</h2><p>Hours</p></div>
     <div class="time-box"><h2>${mins}</h2><p>Min</p></div>
-    <div class="time-box"><h2>${secs}</h2><p>Seg</p></div>
+    <div class="time-box"><h2>${secs}</h2><p>Sec</p></div>
   `;
 }
 
